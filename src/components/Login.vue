@@ -4,17 +4,20 @@
 
     <div class="text-center col-sm-12">
       <!-- login form -->
-      <form @submit.prevent="checkCreds">
+      <form @submit.prevent="checkCredential">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-          <input class="form-control" name="username" placeholder="Username" type="text" v-model="username">
+          <input class="form-control" name="email" placeholder="Email Address" type="email" v-model="email">
         </div>
 
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-lock"></i></span>
           <input class="form-control" name="password" placeholder="Password" type="password" v-model="password">
         </div>
-        <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Submit</button>
+        <button type="submit"
+                :class="'btn btn-primary btn-lg' + loading">
+          Submit
+        </button>
       </form>
 
       <!-- errors -->
@@ -32,27 +35,21 @@
         return {
           section: 'Login',
           loading: '',
-          username: '',
+          email: '',
           password: '',
           response: ''
         }
       },
       methods: {
-        checkCreds() {
-          const {username, password} = this
-
+        checkCredential: function () {
+          const {email, password} = this
           this.toggleLoading()
           this.resetResponse()
           this.$store.commit('TOGGLE_LOADING')
-
-                /* Making API call to authenticate a user */
-          api
-                    .request('post', '/login', {username, password})
+          api.request('post', '/login', {email, password})
                     .then(response => {
                       this.toggleLoading()
-
                       var data = response.data
-                        /* Checking if error object was returned from the server */
                       if (data.error) {
                         var errorName = data.error.name
                         if (errorName) {
@@ -61,31 +58,24 @@
                                         ? 'Username/Password incorrect. Please try again.'
                                         : errorName
                         } else {
-                          this.response = data.error
+                          this.response = response
                         }
-
                         return
                       }
-
-                        /* Setting user in the state and caching record to the localStorage */
                       if (data.user) {
                         var token = 'Bearer ' + data.token
-
                         this.$store.commit('SET_USER', data.user)
                         this.$store.commit('SET_TOKEN', token)
-
                         if (window.localStorage) {
                           window.localStorage.setItem('user', JSON.stringify(data.user))
                           window.localStorage.setItem('token', token)
                         }
-
                         this.$router.push(data.redirect ? data.redirect : '/')
                       }
                     })
                     .catch(error => {
                       this.$store.commit('TOGGLE_LOADING')
                       console.log(error)
-
                       this.response = 'Server appears to be offline'
                       this.toggleLoading()
                     })
@@ -96,6 +86,7 @@
         resetResponse() {
           this.response = ''
         }
+
       }
     }
 </script>
@@ -136,7 +127,7 @@
 
   .logo {
     width: 15em;
-    padding: 3em;
+    padding: 2em;
   }
 
   .input-group {
@@ -163,7 +154,7 @@
     }
 
     .input-group input {
-      height: 6em;
+      height: 4em;
     }
   }
 

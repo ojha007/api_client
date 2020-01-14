@@ -10,5 +10,8 @@ export default {
   },
   SET_TOKEN (state, token) {
     state.token = token
+  },
+  GET_USER(state, user) {
+    state.user = user
   }
 }

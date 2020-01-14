@@ -1,8 +1,5 @@
 import DashView from './components/Dash.vue'
 import LoginView from './components/Login.vue'
-import NotFoundView from './components/404.vue'
-
-// Import Views - Dash
 import DashboardView from './components/views/Dashboard.vue'
 import TablesView from './components/views/Tables.vue'
 import TasksView from './components/views/Tasks.vue'
@@ -10,11 +7,13 @@ import SettingView from './components/views/Setting.vue'
 import AccessView from './components/views/Access.vue'
 import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
+import NotFoundView from './components/404'
+import permissions from './routes/permission'
+import Role from './components/views/Permission/Role'
 
-// Routes
-const routes = [
+const otherRoutes = [
   {
-    path: '/login',
+    path: 'login',
     component: LoginView
   },
   {
@@ -57,13 +56,21 @@ const routes = [
         component: ReposView,
         name: 'Repository',
         meta: {description: 'List of popular javascript repos'}
+      },
+      {
+        path: 'role',
+        component: Role,
+        name: 'Role',
+        meta: {description: 'Overview of Users Roles'}
       }
     ]
-  }, {
+  },
+  {
     // not found handler
     path: '*',
     component: NotFoundView
   }
 ]
-
+var routes = []
+routes = routes.concat(permissions, otherRoutes)
 export default routes

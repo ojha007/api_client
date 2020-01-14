@@ -25,8 +25,8 @@
 </template>
 
 <script>
-export default {
-  name: 'UserMenu',
-  props: ['user']
-}
+    export default {
+      name: 'UserMenu',
+      props: ['user']
+    }
 </script>
