@@ -12,7 +12,6 @@
       </a>
 
 
-
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -29,15 +28,21 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    // import {mapState} from 'vuex'
     import MessagesMenu from './MessagesMenu'
     import NotificationsMenu from './NotificationsMenu'
     import TasksMenu from './TasksMenu'
     import UserMenu from './UserMenu'
     import AppSelect from './AppSelect'
+    import api from '../../api'
 
     export default {
       name: 'DashHeader',
+      data() {
+        return {
+          user: null
+        }
+      },
       components: {
         MessagesMenu,
         NotificationsMenu,
@@ -45,11 +50,19 @@
         UserMenu,
         AppSelect
       },
-      props: ['user'],
-      computed: {
-        ...mapState([
-          'userInfo'
-        ])
+      beforeCreate() {
+        api.request('get', '/users')
+                .then(response => {
+                  console.log(response.data)
+                })
       }
     }
+
+    // computed: {
+    // ...
+    //     mapState([
+    //         'userInfo'
+    //     ])
+    // }
+    // }
 </script>

@@ -57,7 +57,7 @@ export const timeline = [{
   }]
 },
 {
-  icon: 'fa-user',
+  icon: 'fa-users',
   color: 'yellow',
   title: 'Sarah Young accepted your friend request',
   time: moment('20150620', 'MMM Do YY').fromNow()

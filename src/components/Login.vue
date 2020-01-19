@@ -4,7 +4,7 @@
 
     <div class="text-center col-sm-12">
       <!-- login form -->
-      <form @submit.prevent="checkCredential">
+      <form @submit.prevent="loginUser">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
           <input class="form-control" name="email" placeholder="Email Address" type="email" v-model="email">
@@ -27,8 +27,7 @@
 </template>
 
 <script>
-    import api from '../api'
-
+    import { mapActions } from 'vuex'
     export default {
       name: 'Login',
       data(router) {
@@ -41,44 +40,11 @@
         }
       },
       methods: {
-        checkCredential: function () {
-          const {email, password} = this
-          this.toggleLoading()
-          this.resetResponse()
-          this.$store.commit('TOGGLE_LOADING')
-          api.request('post', '/login', {email, password})
-                    .then(response => {
-                      this.toggleLoading()
-                      var data = response.data
-                      if (data.error) {
-                        var errorName = data.error.name
-                        if (errorName) {
-                          this.response =
-                                    errorName === 'InvalidCredentialsError'
-                                        ? 'Username/Password incorrect. Please try again.'
-                                        : errorName
-                        } else {
-                          this.response = response
-                        }
-                        return
-                      }
-                      if (data.user) {
-                        var token = 'Bearer ' + data.token
-                        this.$store.commit('SET_USER', data.user)
-                        this.$store.commit('SET_TOKEN', token)
-                        if (window.localStorage) {
-                          window.localStorage.setItem('user', JSON.stringify(data.user))
-                          window.localStorage.setItem('token', token)
-                        }
-                        this.$router.push(data.redirect ? data.redirect : '/')
-                      }
-                    })
-                    .catch(error => {
-                      this.$store.commit('TOGGLE_LOADING')
-                      console.log(error)
-                      this.response = 'Server appears to be offline'
-                      this.toggleLoading()
-                    })
+        ...mapActions([
+          'login'
+        ]),
+        loginUser() {
+          this.login(this.email, this.password)
         },
         toggleLoading() {
           this.loading = this.loading === '' ? 'loading' : ''
@@ -132,18 +98,18 @@
 
   .input-group {
     padding-bottom: 2em;
-    height: 4em;
+    height: 3em;
     width: 100%;
   }
 
   .input-group span.input-group-addon {
     width: 2em;
-    height: 4em;
+    height: 3em;
   }
 
   @media (max-width: 1241px) {
     .input-group input {
-      height: 4em;
+      height: 3em;
     }
   }
 
@@ -154,7 +120,7 @@
     }
 
     .input-group input {
-      height: 4em;
+      height: 3em;
     }
   }
 

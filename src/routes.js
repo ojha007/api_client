@@ -13,7 +13,8 @@ import Role from './components/views/Permission/Role'
 
 const otherRoutes = [
   {
-    path: 'login',
+    path: '/login',
+    name: 'Login',
     component: LoginView
   },
   {
@@ -58,7 +59,7 @@ const otherRoutes = [
         meta: {description: 'List of popular javascript repos'}
       },
       {
-        path: 'role',
+        path: '/role',
         component: Role,
         name: 'Role',
         meta: {description: 'Overview of Users Roles'}

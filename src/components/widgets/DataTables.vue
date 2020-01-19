@@ -4,28 +4,19 @@
       <div class="col-md-12">
         <div class=" col-md-6">
           <div class="pull-left">
-          <h3>User List</h3>
+            <h3 v-text="list +' List' "></h3>
           </div>
         </div>
         <div class="col-md-6 ">
-         <div class="pull-right">
-         <Button
-           btn-text="Add User"
-           btn-class="btn-primary"
-           margin-top="margin-top:16px;">
-
-         </Button>
-         </div>
+          <div class="pull-right">
+            <slot></slot>
+          </div>
         </div>
       </div>
     </div>
     <div class="row center-block">
       <div class="col-md-12">
         <div class="box">
-          <div class="box-header">
-            <h3 class="box-title">Data Table With Full Features</h3>
-          </div>
-          <!-- /.box-header -->
           <div class="box-body">
             <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
               <div class="row">
@@ -154,13 +145,12 @@
 <script>
 
     import $ from 'jquery'
-    import Button from './Button'
 
-require('datatables.net')
+    require('datatables.net')
     require('datatables.net-bs')
     export default {
       name: 'DataTables',
-      components: {Button},
+      props: ['list'],
       mounted() {
         this.$nextTick(() => {
           $('#example1').DataTable()

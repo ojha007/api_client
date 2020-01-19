@@ -47,7 +47,7 @@ var factory = function( $, DataTable ) {
  * from the table that has been hidden. There are also two modes of operation
  * for this child row display:
  *
- * * Inline - when the control element that the user can use to show / hide
+ * * Inline - when the control element that the users can use to show / hide
  *   child rows is displayed inside the first column of the table.
  * * Column - where a whole column is dedicated to be the show / hide control.
  *
@@ -88,7 +88,7 @@ var Responsive = function ( settings, opts ) {
 		return;
 	}
 
-	// details is an object, but for simplicity the user can give it as a string
+	// details is an object, but for simplicity the users can give it as a string
 	if ( opts && typeof opts.details === 'string' ) {
 		opts.details = { type: opts.details };
 	}
@@ -573,7 +573,7 @@ Responsive.prototype = {
 				break;
 			}
 		}
-		
+
 		// Show the columns for that break point
 		var columnsVis = this._columnsVisiblity( breakpoint );
 
@@ -633,7 +633,7 @@ Responsive.prototype = {
 		// includes all columns. As such, try to do this as little as possible.
 		dt.rows( { page: 'current' } ).indexes().flatten().each( function ( idx ) {
 			var clone = dt.row( idx ).node().cloneNode( true );
-			
+
 			if ( dt.columns( ':hidden' ).flatten().length ) {
 				$(clone).append( dt.cells( idx, ':hidden' ).nodes().to$().clone() );
 			}

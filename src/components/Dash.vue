@@ -1,12 +1,12 @@
 <template>
   <div :class="['wrapper', classes]">
 
-    <!-- Horizontal bar at top. Contains messages, notifications, tasks and user menu -->
+    <!-- Horizontal bar at top. Contains messages, notifications, tasks and users menu -->
     <dash-header :user="user"></dash-header>
-    
+
     <!-- Left side column. contains the logo and sidebar -->
     <sidebar :user="user" />
-  
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -27,7 +27,7 @@
       <router-view></router-view>
     </div>
     <!-- /.content-wrapper -->
-  
+
     <!-- Horizontal bar at bottom. Contains copy right -->
     <dash-footer></dash-footer>
   </div>

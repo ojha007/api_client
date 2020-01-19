@@ -4,6 +4,7 @@ import 'es6-promise/auto'
 // Import System requirements
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VModal from 'vue-js-modal'
 
 import { sync } from 'vuex-router-sync'
 import routes from './routes'
@@ -14,6 +15,7 @@ import { domain, count, prettyDate, pluralize } from './filters'
 
 // Import Views - Top level
 import AppView from './components/App.vue'
+import {validate} from 'vee-validate'
 
 // Import Install and register helper items
 Vue.filter('count', count)
@@ -22,6 +24,9 @@ Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
+
+Vue.use(VModal)
+Vue.use(validate)
 
 // Routing logic
 var router = new VueRouter({
@@ -33,7 +38,7 @@ var router = new VueRouter({
   }
 })
 
-// Some middleware to help us ensure the user is authenticated.
+// Some middleware to help us ensure the users is authenticated.
 router.beforeEach((to, from, next) => {
   if (
     to.matched.some(record => record.meta.requiresAuth) &&

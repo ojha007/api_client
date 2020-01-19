@@ -58,7 +58,7 @@ var factory = function( $, DataTable ) {
  *  @constructor
  *  @global
  *  @param {object} oDT DataTables settings object
- *  @param {object} [oOpts={}] Configuration object for FixedColumns. Options 
+ *  @param {object} [oOpts={}] Configuration object for FixedColumns. Options
  *    are defined by {@link Scroller.defaults}
  *
  *  @requires jQuery 1.7+
@@ -150,7 +150,7 @@ var Scroller = function ( oDTSettings, oOpts ) {
 
 		/**
 		 * setTimeout reference for state saving, used when state saving is enabled in the DataTable
-		 * and when the user scrolls the viewport in order to stop the cookie set taking too much
+		 * and when the users scrolls the viewport in order to stop the cookie set taking too much
 		 * CPU!
 		 *  @type     int
 		 *  @default  0
@@ -318,7 +318,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *          o.oScroller.fnScrollToRow( 1000 );
 	 *        }
 	 *      } );
-	 *     
+	 *
 	 *      // Sometime later on use the following to scroll to row 500...
 	 *          var oSettings = $('#example').dataTable().fnSettings();
 	 *      oSettings.oScroller.fnScrollToRow( 500 );
@@ -388,7 +388,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 *          o.oScroller.fnScrollToRow( 1000 );
 	 *        }
 	 *      } );
-	 *     
+	 *
 	 *      setTimeout( function () {
 	 *        // Make the example container visible and recalculate the scroller sizes
 	 *        document.getElementById('container').style.display = "block";
@@ -485,7 +485,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 			that._fnScroll.call( that );
 		} );
 
-		/* In iOS we catch the touchstart event in case the user tries to scroll
+		/* In iOS we catch the touchstart event in case the users tries to scroll
 		 * while the display is already scrolling
 		 */
 		$(this.dom.scroller).on('touchstart.DTS', function () {
@@ -670,7 +670,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 	 * had scrolling containers of infinite height (i.e. the absolute value)
 	 *
 	 *  @param {string} dir Domain transform direction, `virtualToPhysical` or
-	 *    `physicalToVirtual` 
+	 *    `physicalToVirtual`
 	 *  @returns {number} Calculated transform
 	 *  @private
 	 */
@@ -847,7 +847,7 @@ Scroller.prototype = /** @lends Scroller.prototype */{
 
 	/**
 	 * Force the scrolling container to have height beyond that of just the
-	 * table that has been drawn so the user can scroll the whole data set.
+	 * table that has been drawn so the users can scroll the whole data set.
 	 *
 	 * Note that if the calculated required scrolling height exceeds a maximum
 	 * value (1 million pixels - hard-coded) the forcing element will be set
@@ -1102,7 +1102,7 @@ Scroller.defaults = /** @lends Scroller.defaults */{
 	/**
 	 * Scroller uses the boundary scaling factor to decide when to redraw the table - which it
 	 * typically does before you reach the end of the currently loaded data set (in order to
-	 * allow the data to look continuous to a user scrolling through the data). If given as 0
+	 * allow the data to look continuous to a users scrolling through the data). If given as 0
 	 * then the table will be redrawn whenever the viewport is scrolled, while 1 would not
 	 * redraw the table until the currently loaded data has all been shown. You will want
 	 * something in the middle - the default factor of 0.5 is usually suitable.

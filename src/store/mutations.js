@@ -4,14 +4,5 @@ export default {
   },
   TOGGLE_SEARCHING (state) {
     state.searching = (state.searching === '') ? 'loading' : ''
-  },
-  SET_USER (state, user) {
-    state.user = user
-  },
-  SET_TOKEN (state, token) {
-    state.token = token
-  },
-  GET_USER(state, user) {
-    state.user = user
   }
 }

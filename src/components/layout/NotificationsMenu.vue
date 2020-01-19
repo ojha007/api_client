@@ -1,82 +1,82 @@
 <template>
   <li class="dropdown notifications-menu">
-    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-      <i class="fa fa-bell-o"></i>
-      <span class="label label-warning">{{ newNotifications | count }}</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li class="header">
-        <div class="row no-margin">
-          <span class="col-xs-12 col-md-6 tab-link" :class="{active: tab === 'new'}" @click="switchTab($event, 'new')">
-              <a href="javascript:;">New</a>
-            </span>
-          <span class="col-xs-12 col-md-6 tab-link" :class="{active: tab === 'old'}" @click="switchTab($event, 'old')">
-              <a href="javascript:;">Old</a>
-            </span>
-        </div>
-      </li>
-      <li>
-        <ul v-if="tab === 'new'" class="menu">
-          <notification-item v-for="notification in newNotifications" :key="notification.id" :notification="notification"></notification-item>
-          <li v-if="!newNotifications.length">
-            <span class="center-block text-center">There are no new notifications</span>
-          </li>
-        </ul>
-        <ul v-if="tab === 'old'" class="menu">
-          <notification-item v-for="notification in oldNotifications" :key="notification.id" :notification="notification"></notification-item>
-          <li v-if="!oldNotifications.length">
-            <span class="center-block text-center">There are no old notifications</span>
-          </li>
-        </ul>
-      </li>
-      <li v-if="newNotifications.length && tab === 'new'" class="footer">
-        <a href="javascript:;" @click="markAllAsRead">
-          <i class="fa fa-check"></i>
-          <span>Mark all as read</span>
-        </a>
-      </li>
-    </ul>
+<!--    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">-->
+    <!--      <i class="fa fa-bell-o"></i>-->
+    <!--      <span class="label label-warning">{{ newNotifications | count }}</span>-->
+    <!--    </a>-->
+    <!--    <ul class="dropdown-menu">-->
+    <!--      <li class="header">-->
+    <!--        <div class="row no-margin">-->
+    <!--          <span class="col-xs-12 col-md-6 tab-link" :class="{active: tab === 'new'}" @click="switchTab($event, 'new')">-->
+    <!--              <a href="javascript:;">New</a>-->
+    <!--            </span>-->
+    <!--          <span class="col-xs-12 col-md-6 tab-link" :class="{active: tab === 'old'}" @click="switchTab($event, 'old')">-->
+    <!--              <a href="javascript:;">Old</a>-->
+    <!--            </span>-->
+    <!--        </div>-->
+    <!--      </li>-->
+    <!--      <li>-->
+    <!--        <ul v-if="tab === 'new'" class="menu">-->
+    <!--          <notification-item v-for="notification in newNotifications" :key="notification.id" :notification="notification"></notification-item>-->
+    <!--          <li v-if="!newNotifications.length">-->
+    <!--            <span class="center-block text-center">There are no new notifications</span>-->
+    <!--          </li>-->
+    <!--        </ul>-->
+    <!--        <ul v-if="tab === 'old'" class="menu">-->
+    <!--          <notification-item v-for="notification in oldNotifications" :key="notification.id" :notification="notification"></notification-item>-->
+    <!--          <li v-if="!oldNotifications.length">-->
+    <!--            <span class="center-block text-center">There are no old notifications</span>-->
+    <!--          </li>-->
+    <!--        </ul>-->
+    <!--      </li>-->
+    <!--      <li v-if="newNotifications.length && tab === 'new'" class="footer">-->
+    <!--        <a href="javascript:;" @click="markAllAsRead">-->
+    <!--          <i class="fa fa-check"></i>-->
+    <!--          <span>Mark all as read</span>-->
+    <!--        </a>-->
+    <!--      </li>-->
+    <!--    </ul>-->
   </li>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import NotificationItem from './NotificationItem'
+    import {mapState} from 'vuex'
+    import NotificationItem from './NotificationItem'
 
-export default {
+    export default {
   name: 'NotificationsMenu',
   components: {
-    NotificationItem
+        NotificationItem
   },
   data() {
-    return {
-      tab: 'new'
-    }
+        return {
+          tab: 'new'
+        }
   },
   computed: {
-    ...mapState([
-      'userInfo'
-    ]),
-    newNotifications() {
-      return this.userInfo.notifications.filter(n => !n.readAt)
-    },
-    oldNotifications() {
-      return this.userInfo.notifications.filter(n => n.readAt)
-    }
+        ...mapState([
+          'userInfo'
+        ]),
+        newNotifications() {
+          return this.userInfo.notifications.filter(n => !n.readAt)
+        },
+        oldNotifications() {
+          return this.userInfo.notifications.filter(n => n.readAt)
+        }
   },
   methods: {
-    markAllAsRead() {
-      event.stopPropagation()
+        markAllAsRead() {
+          event.stopPropagation()
 
-      this.userInfo.notifications.filter(n => !n.readAt).forEach(function(notification) {
-        notification.readAt = new Date().toUTCString
-      })
-    },
-    switchTab(event, tab) {
-      event.stopPropagation()
+          this.userInfo.notifications.filter(n => !n.readAt).forEach(function(notification) {
+            notification.readAt = new Date().toUTCString
+          })
+        },
+        switchTab(event, tab) {
+          event.stopPropagation()
 
-      this.tab = tab
-    }
+          this.tab = tab
+        }
   }
 }
 </script>
