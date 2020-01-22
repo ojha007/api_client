@@ -13,8 +13,8 @@
           <div>
             <p class="white">{{user.displayName}}</p>
           </div>
-          <a href="javascript:;">
-            <i class="fa fa-circle text-success"></i> Online
+          <a href="javascript:void (0);">
+            <i class="fa fa-circle text-success"/> Online
           </a>
         </div>
       </div>
@@ -30,7 +30,7 @@
             data-toggle="hideseek" placeholder="Search Menus"
             data-list=".sidebar-menu">
             <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-              <i class="fa fa-search"></i>
+              <i class="fa fa-search"/>
             </button>
           </span>
         </div>

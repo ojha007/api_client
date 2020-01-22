@@ -14,9 +14,9 @@
               <!-- calendar group -->
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-fw fa-calendar"></i>
+                  <i class="fa fa-fw fa-calendar"/>
                 </span>
-                <datepicker :readonly="true" format="MMM/D/YYYY" id="dateInput" width="100%"></datepicker>
+                <datepicker :readonly="true" format="MMM/D/YYYY" id="dateInput" width="100%"/>
               </div>
               <br />
               <br />
@@ -24,14 +24,14 @@
               <!-- with characthers -->
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-fw fa-at" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-at" aria-hidden="true"/>
                 </span>
                 <input class="form-control" placeholder="Username" type="text">
               </div>
               <br />
               <div class="input-group">
                 <span class="input-group-addon">
-                  <i class="fa fa-fw fa-usd" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-usd" aria-hidden="true"/>
                 </span>
                 <input class="form-control" type="text">
                 <span class="input-group-addon">.00</span>
@@ -41,20 +41,21 @@
               <!-- with icons from font awesome -->
               <h4>With icons</h4>
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></span>
+                <span class="input-group-addon"><i class="fa fa-fw fa-envelope"/></span>
                 <input class="form-control" placeholder="Email" type="email">
               </div>
               <br />
               <div class="input-group">
                 <input class="form-control" type="text">
-                <span class="input-group-addon"><i class="fa fa-fw fa-check"></i></span>
+                <span class="input-group-addon"><i class="fa fa-fw fa-check"/></span>
               </div>
               <br>
 
               <!-- Success/Error heads up input -->
               <h4>With border indicator</h4>
               <div class="form-group has-success">
-                <label class="control-label" for="inputSuccess"><i class="fa fa-fw fa-check"></i> Input with success</label>
+                <label class="control-label" for="inputSuccess">
+                  <i class="fa fa-fw fa-check"/> Input with success</label>
                 <input class="form-control" id="inputSuccess" placeholder="Enter ..." type="text">
                 <span class="help-block">Help block with success</span>
               </div>

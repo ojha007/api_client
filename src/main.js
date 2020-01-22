@@ -1,40 +1,39 @@
-// Import ES6 Promise
 import 'es6-promise/auto'
-
-// Import System requirements
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VModal from 'vue-js-modal'
-
-import { sync } from 'vuex-router-sync'
+import {sync} from 'vuex-router-sync'
 import routes from './routes'
 import store from './store'
-
-// Import Helpers for filters
-import { domain, count, prettyDate, pluralize } from './filters'
-
-// Import Views - Top level
+import {count, domain, pluralize, prettyDate} from './filters'
 import AppView from './components/App.vue'
-import {validate} from 'vee-validate'
+import {ValidationProvider} from 'vee-validate'
+import VueSweetalert2 from 'vue-sweetalert2'
 
-// Import Install and register helper items
+import 'sweetalert2/dist/sweetalert2.min.css'
+import Toasted from 'vue-toasted'
+import PrettyCheckbox from 'pretty-checkbox-vue'
+
+Vue.component('ValidationProvider', ValidationProvider)
 Vue.filter('count', count)
 Vue.filter('domain', domain)
 Vue.filter('prettyDate', prettyDate)
 Vue.filter('pluralize', pluralize)
-
 Vue.use(VueRouter)
-
 Vue.use(VModal)
-Vue.use(validate)
 
+Vue.use(VueSweetalert2)
+
+Vue.use(PrettyCheckbox)
+
+Vue.use(Toasted)
 // Routing logic
 var router = new VueRouter({
   routes: routes,
   mode: 'history',
   linkExactActiveClass: 'active',
-  scrollBehavior: function(to, from, savedPosition) {
-    return savedPosition || { x: 0, y: 0 }
+  scrollBehavior: function (to, from, savedPosition) {
+    return savedPosition || {x: 0, y: 0}
   }
 })
 
@@ -49,7 +48,7 @@ router.beforeEach((to, from, next) => {
     window.console.log('Not authenticated')
     next({
       path: '/login',
-      query: { redirect: to.fullPath }
+      query: {redirect: to.fullPath}
     })
   } else {
     next()
@@ -58,7 +57,6 @@ router.beforeEach((to, from, next) => {
 
 sync(store, router)
 
-// Check local storage to handle refreshes
 if (window.localStorage) {
   var localUserString = window.localStorage.getItem('user') || 'null'
   var localUser = JSON.parse(localUserString)
@@ -69,7 +67,6 @@ if (window.localStorage) {
   }
 }
 
-// Start out app!
 // eslint-disable-next-line no-new
 new Vue({
   el: '#root',
@@ -78,6 +75,3 @@ new Vue({
   render: h => h(AppView)
 })
 
-// change this. demo
-window.bugsnagClient = window.bugsnag('02fe1c2caaf5874c50b6ee19534f5932')
-window.bugsnagClient.use(window.bugsnag__vue(Vue))

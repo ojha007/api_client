@@ -2,7 +2,7 @@ export default {
   isLoggedIn(state) {
     return state.token !== null
   },
-  getRoles(state) {
+  ROLES: state => {
     return state.roles
   },
   getRolesById(state) {

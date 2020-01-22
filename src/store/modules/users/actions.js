@@ -1,4 +1,5 @@
-import api from '../../api'
+import api from '../../../api'
+
 export default {
   login: function (email, password) {
     // this.toggleLoading()
@@ -39,11 +40,10 @@ export default {
         // this.toggleLoading()
       })
   },
-  roles: function ({ commit }) {
-    api.request('get', 'roles', null)
+  getAllRoles: function ({commit}) {
+    api.request('get', '/roles', null)
       .then(response => {
-        console.log(response)
-        commit('SET_ROLES', response.data)
+        commit('SET_ROLES', response.data.data)
       })
       .catch(error => {
         console.log(error)

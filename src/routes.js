@@ -9,7 +9,8 @@ import ServerView from './components/views/Server.vue'
 import ReposView from './components/views/Repos.vue'
 import NotFoundView from './components/404'
 import permissions from './routes/permission'
-import Role from './components/views/Permission/Role'
+import Role from './components/views/Role/Role'
+import CreateRole from './components/views/Role/AddRole'
 
 const otherRoutes = [
   {
@@ -63,6 +64,15 @@ const otherRoutes = [
         component: Role,
         name: 'Role',
         meta: {description: 'Overview of Users Roles'}
+      },
+      {
+        path: '/create/role',
+        alias: 'Create_Role',
+        component: CreateRole,
+        name: 'Create Role',
+        meta: {
+          description: 'Create New Role'
+        }
       }
     ]
   },

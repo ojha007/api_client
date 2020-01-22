@@ -51,7 +51,7 @@
         AppSelect
       },
       beforeCreate() {
-        api.request('get', '/users')
+        api.request('get', '/user')
                 .then(response => {
                   console.log(response.data)
                 })

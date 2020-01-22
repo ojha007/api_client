@@ -6,12 +6,12 @@
       <!-- login form -->
       <form @submit.prevent="loginUser">
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+          <span class="input-group-addon"><i class="fa fa-envelope">/</i></span>
           <input class="form-control" name="email" placeholder="Email Address" type="email" v-model="email">
         </div>
 
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <span class="input-group-addon"><i class="fa fa-lock"/></span>
           <input class="form-control" name="password" placeholder="Password" type="password" v-model="password">
         </div>
         <button type="submit"
