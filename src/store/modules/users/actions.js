@@ -1,4 +1,6 @@
 import api from '../../../api'
+import Vue from 'vue'
+import {errorToast, successToast} from '../../../core/Toast'
 
 export default {
   login: function (email, password) {
@@ -55,6 +57,23 @@ export default {
         commit('SET_ROLE_BY_ID', response.data)
       }).catch(error => {
         console.log(error)
+      })
+  },
+  addRoleWithPermission: function ({commit}, formData) {
+    console.log(formData)
+    api.request('post', '/roles', {
+      'name': formData.name,
+      'guard_name': formData.guard_name
+    })
+      .then(response => {
+        this.$router.push('/role')
+        successToast(response.data.message)
+      })
+      .catch(error => {
+        let errors = Object.values(error.response.data.errors)
+        for (let i = 0; i <= errors.length - 1; i++) {
+          errorToast(errors[i][0])
+        }
       })
   }
 }
