@@ -7,5 +7,6 @@ export default {
   },
   getRolesById(state) {
     return state.role
-  }
+  },
+  PERMISSIONS: state => state.permissions
 }

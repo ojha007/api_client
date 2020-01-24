@@ -21,3 +21,8 @@ export function pluralize(time, label) {
 
   return time + label + 's'
 }
+
+export function formValidated(form) {
+  console.log(form)
+  // return Object.keys(this.fields).some(key => this.fields[key].validated) && Object.keys(this.fields).some(key => this.fields[key].valid)
+}

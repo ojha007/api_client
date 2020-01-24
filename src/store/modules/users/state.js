@@ -1,4 +1,5 @@
 export default {
   roles: [],
-  role: []
+  role: [],
+  permissions: {}
 }

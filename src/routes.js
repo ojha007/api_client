@@ -11,6 +11,8 @@ import NotFoundView from './components/404'
 import permissions from './routes/permission'
 import Role from './components/views/Role/Role'
 import CreateRole from './components/views/Role/AddRole'
+import Index from './components/views/Product/Index'
+import Create from './components/views/Product/Create'
 
 const otherRoutes = [
   {
@@ -73,6 +75,18 @@ const otherRoutes = [
         meta: {
           description: 'Create New Role'
         }
+      },
+      {
+        path: '/products',
+        name: 'Product',
+        alias: 'Product',
+        component: Index
+      },
+      {
+        path: '/products/create',
+        name: 'Product_Create',
+        alias: 'Product Create',
+        component: Create
       }
     ]
   },
