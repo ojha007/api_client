@@ -2,7 +2,7 @@
   <div :class="['wrapper', classes]">
 
     <!-- Horizontal bar at top. Contains messages, notifications, tasks and users menu -->
-    <dash-header :user="user"></dash-header>
+    <dash-header :user="user"/>
 
     <!-- Left side column. contains the logo and sidebar -->
     <sidebar :user="user"/>
@@ -17,8 +17,8 @@
         </h1>
         <ol class="breadcrumb">
           <li>
-            <a href="javascript:;">
-              <i class="fa fa-home"></i>Home</a>
+            <a href="javascript:void 0;">
+              <i class="fa fa-home"/>Home</a>
           </li>
           <li class="active">{{$route.name.toUpperCase()}}</li>
         </ol>
@@ -31,7 +31,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Horizontal bar at bottom. Contains copy right -->
-    <dash-footer></dash-footer>
+    <dash-footer/>
   </div>
 </template>
 
@@ -52,7 +52,6 @@
     },
     data: function () {
       return {
-        // section: 'Dash',
         classes: {
           fixed_layout: config.fixedLayout,
           hide_logo: config.hideLogoOnMobile

@@ -14,7 +14,7 @@ export function errorToast(message) {
     theme: 'toasted-primary',
     position: 'bottom-right',
     className: 'text-center',
-    duration: 0,
+    duration: 5000,
     icon: 'error'
   })
 }

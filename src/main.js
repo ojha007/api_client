@@ -9,11 +9,13 @@ import {count, domain, pluralize, prettyDate} from './filters'
 import AppView from './components/App.vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import select2 from 'vue-select2'
-import VeeValidate from 'vee-validate'
+// eslint-disable-next-line no-duplicate-imports
+import VeeValidate, {Validator} from 'vee-validate'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import Toasted from 'vue-toasted'
 import PrettyCheckbox from 'pretty-checkbox-vue'
 import 'material-design-icons/iconfont/material-icons.css'
+
 Vue.filter('count', count)
 Vue.filter('domain', domain)
 Vue.filter('prettyDate', prettyDate)
@@ -22,6 +24,14 @@ Vue.use(VueRouter)
 Vue.use(VModal)
 Vue.use(select2)
 Vue.use(VeeValidate)
+Validator.extend('minLength', {
+  getMessage(field, [length]) {
+    return `At least ${length} items must be selected.`
+  },
+  validate(value, [length]) {
+    return value.length >= length
+  }
+})
 
 Vue.use(Toasted, {
   iconPack: 'material'
@@ -40,15 +50,16 @@ var router = new VueRouter({
     return savedPosition || {x: 0, y: 0}
   }
 })
-
-// Some middleware to help us ensure the users is authenticated.
 router.beforeEach((to, from, next) => {
-  if (
-    to.matched.some(record => record.meta.requiresAuth) &&
-    (!router.app.$store.state.token || router.app.$store.state.token === 'null')
-  ) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.user.getters.isLoggedIn) {
+      console.log('lll')
+      next({
+        name: 'login'
+      })
+    } else {
+      next()
+    }
     window.console.log('Not authenticated')
     next({
       path: '/login',

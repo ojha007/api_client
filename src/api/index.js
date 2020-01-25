@@ -14,6 +14,12 @@ export default {
     }
 
     var url = config.serverURI + uri
-    return axios({method, url, data})
+    return axios({
+      method,
+      url,
+      data,
+      headers: {
+      }
+    })
   }
 }

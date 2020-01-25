@@ -11,9 +11,6 @@ export default {
   SET_ROLE_BY_ID(state, role) {
     state.role = role
   },
-  GET_PERMISSIONS(state, permissions) {
-    state.permissions = permissions
-  },
   SET_PERMISSIONS(state, permissions) {
     state.permissions = permissions
   }

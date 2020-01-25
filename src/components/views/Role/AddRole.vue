@@ -24,12 +24,15 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="col-md-8 col-md-offset-2">
+                  <span>{{ errors.first('selected') }}</span>
                   <div class="col-md-4" v-for="(index,key) in permissions">
                     <div class="pretty p-icon p-curve p-bigger">
-                      <input name="permissions[]" type="checkbox" v-validate.initial="'required:true'"/>
+                      <input :id="index.name" :value="index.name" name="permissions[]" type="checkbox"
+                             v-model="selectedPermissions"
+                             v-validate="'required|minLength:2'"/>
                       <div class="state p-primary">
                         <i class="icon mdi mdi-close"/>
-                        <label>{{index.name}}</label>
+                        <label :for="index.name">{{index.name}}</label>
                       </div>
                     </div>
                   </div>
@@ -57,15 +60,16 @@
   </section>
 </template>
 <script>
-  // import  from 'pretty-checkbox-vue'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters, mapState} from 'vuex'
+  // import {ErrorBag} from 'vee-validate'
 
   export default {
     name: 'CreateRole',
     data() {
       return {
         name: '',
-        guard_name: 'Api'
+        guard_name: 'Api',
+        selectedPermissions: []
       }
     },
     methods: {
@@ -74,23 +78,35 @@
           if (response) {
             this.$store.dispatch('addRoleWithPermission', {
               name: this.name,
-              guard_name: this.guard_name
+              guard_name: this.guard_name,
+              permissions: this.selectedPermissions
             })
           }
         })
       },
-      ...mapActions(['getPermissions'])
+      ...mapActions([
+        'getPermissions'
+      ])
     },
     computed: {
-      Permissions() {
-        this.$store.dispatch('getPermissions')
+      ...mapGetters([
+        'PERMISSIONS'
+      ]),
+      ...mapState([
+        'permissions'
+      ]),
+      permissions: function () {
+        return this.$store.state.user.permissions
       },
       formValidated() {
+        if (this.selectedPermissions.length <= 2 && this.name === '') {
+          return false
+        }
         return Object.keys(this.fields).some(key => this.fields[key].validated) && Object.keys(this.fields).some(key => this.fields[key].valid)
-      },
-      permissions() {
-        return this.$store.state.user.permissions
       }
+    },
+    created() {
+      this.$store.dispatch('getPermissions')
     }
   }
 </script>

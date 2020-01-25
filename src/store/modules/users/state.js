@@ -1,5 +1,7 @@
 export default {
   roles: [],
   role: [],
-  permissions: {}
+  permissions: [],
+  userInfo: '',
+  token: null
 }
