@@ -11,8 +11,6 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
 
-
-      <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <AppSelect/>
@@ -33,14 +31,12 @@
   import TasksMenu from './TasksMenu'
   import UserMenu from './UserMenu'
   import AppSelect from './AppSelect'
-  import api from '../../api'
-  import {mapState} from 'vuex'
+  import {mapActions, mapState} from 'vuex'
 
-export default {
+  export default {
     name: 'DashHeader',
     data() {
       return {
-        user: null
       }
     },
     components: {
@@ -50,16 +46,14 @@ export default {
       UserMenu,
       AppSelect
     },
-    beforeCreate() {
-      api.request('get', '/user')
-        .then(response => {
-          console.log(response)
-        })
+    mounted() {
+      this.$store.dispatch('userInfo')
     },
     computed: {
       ...mapState([
-        'userInfo'
-      ])
+        'user'
+      ]),
+      ...mapActions(['userInfo'])
     }
   }
 </script>

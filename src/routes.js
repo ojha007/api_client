@@ -18,7 +18,10 @@ const otherRoutes = [
   {
     path: '/login',
     name: 'Login',
-    component: LoginView
+    component: LoginView,
+    meta: {
+      requiresAuth: false
+    }
   },
   {
     path: '/',
@@ -44,12 +47,16 @@ const otherRoutes = [
         path: 'setting',
         component: SettingView,
         name: 'Settings',
-        meta: {description: 'User settings page'}
+        meta: {
+          requiresAuth: true
+        }
       }, {
         path: 'access',
         component: AccessView,
         name: 'Access',
-        meta: {description: 'Example of using maps'}
+        meta: {
+          requiresAuth: true
+        }
       }, {
         path: 'server',
         component: ServerView,
@@ -59,13 +66,17 @@ const otherRoutes = [
         path: 'repos',
         component: ReposView,
         name: 'Repository',
-        meta: {description: 'List of popular javascript repos'}
+        meta: {
+          requiresAuth: true
+        }
       },
       {
         path: '/role',
         component: Role,
         name: 'Role',
-        meta: {description: 'Overview of Users Roles'}
+        meta: {
+          requiresAuth: true
+        }
       },
       {
         path: '/create/role',
@@ -73,20 +84,26 @@ const otherRoutes = [
         component: CreateRole,
         name: 'Create Role',
         meta: {
-          description: 'Create New Role'
+          requiresAuth: true
         }
       },
       {
         path: '/products',
         name: 'Product',
         alias: 'Product',
-        component: Index
+        component: Index,
+        meta: {
+          requiresAuth: true
+        }
       },
       {
         path: '/products/create',
         name: 'Product_Create',
         alias: 'Product Create',
-        component: Create
+        component: Create,
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
   },

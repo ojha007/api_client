@@ -50,25 +50,17 @@ var router = new VueRouter({
     return savedPosition || {x: 0, y: 0}
   }
 })
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.user.getters.isLoggedIn) {
-      console.log('lll')
-      next({
-        name: 'login'
-      })
-    } else {
-      next()
-    }
-    window.console.log('Not authenticated')
-    next({
-      path: '/login',
-      query: {redirect: to.fullPath}
-    })
-  } else {
-    next()
-  }
-})
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (store.getters.isLoggedIn) {
+//       next()
+//     } else {
+//       console.log('Not authenticated')
+//       next('/login')
+//     }
+//   }
+// })
 
 sync(store, router)
 

@@ -1,6 +1,6 @@
 export default {
-  isLoggedIn(state) {
-    return false
+  isLoggedIn: state => {
+    return !!state.token
   },
   ROLES: state => {
     return state.roles

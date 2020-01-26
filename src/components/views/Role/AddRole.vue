@@ -61,7 +61,6 @@
 </template>
 <script>
   import {mapActions, mapGetters, mapState} from 'vuex'
-  // import {ErrorBag} from 'vee-validate'
 
   export default {
     name: 'CreateRole',
@@ -80,6 +79,9 @@
               name: this.name,
               guard_name: this.guard_name,
               permissions: this.selectedPermissions
+            }).then(response => {
+              console.log(response)
+              this.$router.push('/role')
             })
           }
         })

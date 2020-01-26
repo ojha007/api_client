@@ -5,7 +5,9 @@ const roles = [
     path: 'role',
     component: Role,
     name: 'Role',
-    meta: {description: 'Overview of Users Roles'}
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 export default roles

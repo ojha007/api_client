@@ -1,22 +1,22 @@
 <template>
   <li class="dropdown user user-menu">
     <a href="javascript:void (0);" class="dropdown-toggle" data-toggle="dropdown">
-      <!-- The users image in the navbar-->
-<!--      <img :src="users.avatar" class="users-image" alt="User Image">-->
-      <!-- hidden-xs hides the username on small devices so only the image appears. -->
-<!--      <span class="hidden-xs">{{users.displayName}}</span>-->
+      <img :src="'https://'" class="users-image" alt="User Image">
+      <span class="hidden-xs">{{user.user.name}}</span>
     </a>
     <!-- Account Info and Menu -->
     <ul class="dropdown-menu">
       <li class="user-header" style="height:auto;min-height:85px;padding-bottom:15px;">
         <p>
-<!--          <span>{{users.displayName}}</span>-->
-<!--          <small v-for="role in users.roles" :key="role">{{role}}</small>-->
+          <span>{{user.user.name}}</span>
+          <br/>
+          <span>{{user.user.email}}</span>
+          <small v-for="role in user.roles" :key="role">{{role}}</small>
         </p>
       </li>
       <li class="user-footer">
         <a href="javascript:void (0)" class="btn btn-default btn-flat btn-block">
-          <i class="fa fa-sign-out"></i>
+          <i class="fa fa-sign-out"/>
           <span>Logout</span>
         </a>
       </li>
@@ -27,6 +27,9 @@
 <script>
     export default {
       name: 'UserMenu',
-      props: ['user']
+      props: ['user'],
+      mounted() {
+        console.log(this.user.user)
+      }
     }
 </script>
