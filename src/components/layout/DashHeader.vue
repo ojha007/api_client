@@ -17,7 +17,7 @@
           <messages-menu/>
           <notifications-menu/>
           <tasks-menu/>
-          <user-menu :user="user"/>
+          <user-menu :user="user.user"/>
 
         </ul>
       </div>

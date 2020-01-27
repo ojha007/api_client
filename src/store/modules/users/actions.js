@@ -22,7 +22,7 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          commonErrorToast(error)
+          errorToast(error)
           reject(error)
         })
     })
@@ -36,14 +36,14 @@ export default {
         console.log(error)
       })
   },
-  getRolesById: function ({commit, id}) {
-    api.request('get', 'role:id', {id})
-      .then(response => {
-        commit('SET_ROLE_BY_ID', response.data)
-      }).catch(error => {
-        commonErrorToast(error)
-      })
-  },
+  // getRolesById: function ({commit, id}) {
+  //   api.request('get', 'role:id', {id})
+  //     .then(response => {
+  //       commit('SET_ROLE_BY_ID', response.data)
+  //     }).catch(error => {
+  //       commonErrorToast(error)
+  //     })
+  // },
   addRoleWithPermission: function ({commit}, formData) {
     return new Promise((resolve, reject) => {
       api.request('post', '/roles', {
@@ -58,7 +58,7 @@ export default {
         .catch(error => {
           reject(error)
           console.log(error)
-          commonErrorToast(error)
+          errorToast(error)
         })
     })
   },
@@ -69,7 +69,7 @@ export default {
           commit('SET_PERMISSIONS', response.data.data.data)
         })
         .catch(error => {
-          commonErrorToast(error)
+          errorToast(error)
         })
     })
   },
@@ -82,15 +82,5 @@ export default {
       .catch(error => {
         console.log(error)
       })
-  }
-  // UserRepository
-  // PermissionRepository,
-  // RoleRepository
-}
-
-function commonErrorToast(error) {
-  let errors = Object.values(error.response.data.errors)
-  for (let i = 0; i <= errors.length - 1; i++) {
-    errorToast(errors[i][0])
   }
 }

@@ -9,7 +9,8 @@ export function successToast(message) {
     icon: 'check_circle'
   })
 }
-export function errorToast(message) {
+
+export function errorToastV1(message) {
   return Vue.toasted.error(message, {
     theme: 'toasted-primary',
     position: 'bottom-right',
@@ -17,5 +18,12 @@ export function errorToast(message) {
     duration: 5000,
     icon: 'error'
   })
+}
+
+export function errorToast(error) {
+  let errors = Object.values(error.response.data.errors)
+  for (let i = 0; i <= errors.length - 1; i++) {
+    errorToastV1(errors[i][0])
+  }
 }
 

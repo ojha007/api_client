@@ -12,7 +12,7 @@ import permissions from './routes/permission'
 import Role from './components/views/Role/Role'
 import CreateRole from './components/views/Role/AddRole'
 import Index from './components/views/Product/Index'
-import Create from './components/views/Product/Create'
+import Create from './components/views/Contact/Create'
 
 const otherRoutes = [
   {
@@ -101,6 +101,15 @@ const otherRoutes = [
         name: 'Product_Create',
         alias: 'Product Create',
         component: Create,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/contact/create',
+        alias: 'Create_Contact',
+        component: Create,
+        name: 'Create Contact',
         meta: {
           requiresAuth: true
         }
